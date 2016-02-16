@@ -1,0 +1,51 @@
+<div id="main">
+  <strong><label id="text2">Sign Up</label></strong>
+  <br><div class="separator"></div><br>
+  <% form_for :user, @current_user, :url => { :action => 'activate' } do |f| %>
+    <div id="errors"><label><% if @errors %><%= @errors %><br><br><% end %></label></div>
+    <label id="text3">Your Profile</label>
+    <br><br>
+    <strong><label id="text4"><%= f.label 'Name' %></label></strong>
+    &nbsp;&nbsp;<%= f.text_field :first_name, :size => 20 %>
+    &nbsp;&nbsp;<%= f.text_field :last_name, :size => 20 %>
+    <br><br>
+    <strong><label id="text4"><%= f.label 'Email' %></label></strong>
+    &nbsp;&nbsp;<%= f.text_field :email, :size => 20 %>
+    <br><br>
+    <%= f.check_box :public_profile %>
+    &nbsp;&nbsp;<strong><label id="text4">Display my score in Top Scores</label></strong>
+    <br>
+    <label id="text5">Only your first name and last initial will be displayed.</label>
+    <br><br>
+    <label id="text3">Notifications</label>
+    <br><br>
+    <%= f.check_box :email_notify %>
+    &nbsp;&nbsp;<strong><label id="text4">Receive occasional email messages from GeoPollster</label></strong>
+    <br>
+    <label id="text5">We hate spam too. We will only send emails about GeoPollster.</label>
+    <br><br>
+    <%= f.check_box :connected_app_notify %>
+    &nbsp;&nbsp;<strong><label id="text4">Show me campaign contribution data when I check-in</label></strong>
+    <br><br>
+    <label id="text3">Polling</label>
+    <br><br>
+    <strong><label id="text4">If the election were held right now, this very second, who would you vote for?</label></strong>
+    <div id="spacer_3"></div>
+    <% @parties.each do |party| %>
+      <div style="padding-right:10px; float:left;">
+        <%= link_to image_tag( party.icon_url, :size => '42x42', :title => party.official_name, :alt => party.official_name ), { :controller => 'parties', :action => 'show', :url_slug => party.url_slug }, { :target => "_blank" } %>
+      </div>
+      <div style="line-height:37px; padding-right:10px; padding-top:3px; float:left;">
+        <strong><label id="text4"><%= radio_button_tag 'user[party_id]', party.id, @current_user.party_id==party.id %>&nbsp;&nbsp;<%= party.official_name %></label></strong>
+      </div>
+      <div id="spacer_3"></div>
+    <% end %>
+    <strong><label id="text4"><%= radio_button_tag 'user[party_id]', -1, @current_user.party_id==nil %>&nbsp;&nbsp;I do not wish to participate in polling at this time</label></strong>
+    <br><br>
+
+    <label id="text4"><%= f.submit ' Sign Up ' %></label>
+    <label id="text4">&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Cancel', { :controller => 'users', :action => 'cancel_signup' }, { :style => 'font-weight: normal;' } %></label>
+  <% end %>
+</div>
+
+

@@ -1,0 +1,112 @@
+<div id="main">
+  <strong><label id="text2">GeoPollster Fantasy Football</label></strong>
+  <div style="float: right;"><%= render :partial => 'layouts/share_buttons' %></div>
+  <br><div class="separator"></div><br>
+ 
+  <label style="font-size:1.45em; color:#555555;">
+    We determined if teams were Democratic or Republican based on corporate campaign contributions made by their stadium sponsors. We then combined this data with the league's current standings.
+  </label>
+    <br><br>
+    <table style="background-color: #e8e8df;">
+      <tr>
+        <td style="text-align: left;">
+          <label id="text3">
+            <strong>Teams By Party</strong>
+         </label>
+        </td>
+        <td style="padding-left: 20px;">
+          <label id="text3">
+            <strong>Wins</strong>
+          </label>
+        </td>
+        <td style="padding-left: 20px;">
+          <label id="text3">
+            <strong>Losses</strong>
+          </label>
+        </td>
+        <td style="padding-left: 20px;">
+          <label id="text3">
+            <strong>Ties</strong>
+          </label>
+        </td>
+        <td style="padding-left: 20px;">
+          <label id="text3">
+            <strong>Pct</strong>
+          </label>
+        </td>
+      </tr>
+      <% @rankings.each do |r| %>
+      <tr>
+        <td style="text-align: left;">
+          <label id="text3">
+            <%= r[:name] %>
+         </label>
+        </td>
+        <td style="padding-left: 20px;">
+          <label id="text3">
+            <%= r[:wins] %>
+          </label>
+        </td>
+        <td style="padding-left: 20px;">
+          <label id="text3">
+            <%= r[:losses] %>
+          </label>
+        </td>
+        <td style="padding-left: 20px;">
+          <label id="text3">
+            <%= r[:ties] %>
+          </label>
+        </td>
+        <td style="padding-left: 20px;">
+          <label id="text3">
+            <%= sprintf( "%.3f", r[:pct] ) %>
+          </label>
+        </td>
+      </tr>
+      <% end %>
+    </table>
+  <br>
+  <div style="padding-right:10px; float:left;">
+    <%= image_tag( "/images/democratic.png", :size => "57x57", :title => 'Democratic Teams') %>
+  </div>
+  <div style="line-height:57px; float:left;">
+    <strong><label id="text2">Democratic Teams</label></strong>
+  </div>
+  <br><div class="separator"></div><br>
+  <% @teams.each do |team| %>
+    <% if team[:company] and team[:company].is_democratic? %>
+      <strong><label id="text3"><%= team[:club] %> - <%= link_to team[:stadium], { :controller => 'companies', :action => 'show', :url_slug => team[:company].url_slug }, {:style=>'font-weight:normal;'} %></label></strong><br>
+    <% end %>
+  <% end %>
+  <br>
+  <div style="padding-right:10px; float:left;">
+    <%= image_tag( "/images/republican.png", :size => "57x57", :title => 'Republican Teams') %>
+  </div>
+  <div style="line-height:57px; float:left;">
+    <strong><label id="text2">Republican Teams</label></strong>
+  </div>
+  <br><div class="separator"></div><br>
+  <% @teams.each do |team| %>
+    <% if team[:company] and team[:company].is_republican? %>
+      <strong><label id="text3"><%= team[:club] %> - <%= link_to team[:stadium], { :controller => 'companies', :action => 'show', :url_slug => team[:company].url_slug }, {:style=>'font-weight:normal;'} %></label></strong><br>
+    <% end %>
+  <% end %>
+  <br>
+  <div style="padding-right:10px; float:left;">
+    <%= image_tag( "/images/purple-icon-128.jpg", :size => "57x57", :title => 'Nonpartisan Teams') %>
+  </div>
+  <div style="line-height:57px; float:left;">
+    <strong><label id="text2">Nonpartisan Teams</label></strong>
+  </div>
+  <br><div class="separator"></div><br>
+  <% @teams.each do |team| %>
+    <% if !team[:company] or !team[:company].is_partisan? %>
+      <% if team[:company] %>
+        <strong><label id="text3"><%= team[:club] %> - <%= link_to team[:stadium], { :controller => 'companies', :action => 'show', :url_slug => team[:company].url_slug }, {:style=>'font-weight:normal;'} %></label></strong><br>
+      <% else %>
+        <label id="text3"><strong><%= team[:club] %> -</strong> <%= team[:stadium] %></label><br>
+      <% end %>
+    <% end %>
+  <% end %>
+  <br>
+</div>

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="X-UA-COMPATIBLE" content="IE=8">
+  <title><% if @title %><%= @title %> | GeoPollster <% else %> GeoPollster <% end %></title>
+  <meta name="description" content="GeoPollster: Democracy cannot prosper without informed and engaged Foursquare users." />
+  <meta name="keywords" content="geopollster, campaign donations, transparency, location based polling, pollster, money in politics, foursquare" />
+	<% if ENV['RAILS_ENV'] == 'production' %>
+		<script type="text/javascript">
+			var _gaq = _gaq || [];
+			_gaq.push(['_setAccount', 'UA-10915090-3']);
+			_gaq.push(['_trackPageview']);
+			(function() {
+				var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+				ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+				var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+			})();
+		</script>
+	<% end %>
+  <%= stylesheet_link_tag :all %>
+  <%= javascript_include_tag 'application' %>
+  <%= yield :head %>
+  <%= csrf_meta_tag %>
+</head>
+<body>
+  <center>    
+		<div id="body">
+      <%= render :partial => 'layouts/header' %>
+      <%= yield %>
+      <%= render :partial => 'layouts/footer' %>
+    </div> <!-- end body -->
+  </center>
+</body>
+</html>

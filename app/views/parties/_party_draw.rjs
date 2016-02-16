@@ -1,0 +1,30 @@
+page << "
+	var paper = Raphael('map', 300, 170, 0, 0);
+	var colors = returnGenderColorArray();
+	var colorArray = [];
+	var numberArray = [];
+	var legendArray = [];
+	var count =0;
+"
+for g in @genders
+	gender = g.gender
+	total = g.total
+	page << "
+		numberArray[count] = #{total};
+		legendArray[count] = '#{gender}';
+		if (legendArray[count] === 'M') {
+			colorArray[count] = colors[0];
+			legendArray[count] = 'Men - %%.%%';
+		}
+		if (legendArray[count] === 'F') {
+			colorArray[count] = colors[1];
+			legendArray[count] = 'Women - %%.%%';
+		}
+		if (legendArray[count] === 'N') {
+			colorArray[count] = colors[2];
+			legendArray[count] = 'None - %%.%%';
+		}
+		count += 1;
+	"
+end
+page << "drawPieChart(colorArray, numberArray, legendArray, 0, 'left', 0, .5);"

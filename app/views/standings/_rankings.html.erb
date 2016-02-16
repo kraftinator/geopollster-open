@@ -1,0 +1,94 @@
+<style type="text/css">
+
+  #container {  margin:0 auto; background:#fff; height:100%;}
+  #tableContainer { }
+
+  table.history { width:100%; padding:0; font-size:11px;}
+  table.history th { text-align: left; color: #ffffff; padding:.5em .25em .5em 1em; color:#444; font-size:13px;}
+  table.history tr.tableEven { background:#e5e5e5; }
+  table.history td { padding:.25em; padding:.5em .25em .5em 1em; width:15%; }
+  
+  table.history th.tableRank { width:5% }
+  table.history td.tableRank { width:5% }
+  table.history th.tableUser { width:25%; border-left: 1px solid #ccc; }
+  table.history td.tableUser { width:25%; border-left: 1px solid #ccc; }
+  table.history th.tableLocation { width:25%; border-left: 1px solid #ccc;}
+  table.history td.tableLocation { width:25%; border-left: 1px solid #ccc;}
+  table.history td.tableTopCompany { width:30%; }
+  table.history th.tablePoints { background:#9f55a1; color:#fff; text-align:center; width:5%; border-bottom:1px solid #660066; -moz-border-radius-topleft:8px;-moz-border-radius-topright: 8px; border-top-left-radius:8px; border-top-right-radius:8px; padding:.25em;}
+  table.history td.tablePoints { background:#9f55a1; color:#fff; text-align:center; width:5%; padding:.25em; border-bottom:1px solid #660066; border-top: 1px solid #c07ac2 }
+  
+</style>
+
+<% if is_democratic %>
+  <div style="float: left"><label id="text35"><strong>TOP BLUE POINT EARNERS:</strong></label></div>
+  <div style="float: right"><label id="text5"><%= link_to 'Show Red Points', :controller => 'standings', :action => 'republicans' %></label></div>
+<% else %>
+  <label id="text35"><strong>TOP RED POINT EARNERS:</strong></label>
+  <div style="float: right"><label id="text5"><%= link_to 'Show Blue Points', :controller => 'standings', :action => 'democrats' %></label></div>
+<% end %>
+<br><br><br>
+<% if !points.empty? %>
+  <div id="container">
+    <div id="tableContainer">
+      <table class="history" cellpadding="0" cellspacing="0">
+        
+        <thead>
+          <tr>
+            <th class="tableRank">Rank</th>
+            <th class="tableUser">User</th>
+            <th class="tableLocation">Location</th>
+            <th class="tablePoints">Points</th>
+            <th class="tableTopCompany">Top Company</th>
+          </tr>
+        </thead>
+    
+        <tbody>
+          <% even_flag = true %>
+          <% points.each_with_index do |p,index| %>
+          
+            <tr class="<%= even_flag ? 'tableEven' : 'tableOdd' %>">
+              <td class="tableRank">
+                <label id="text3"><%= index+1 %></label>
+              </td>
+              <td class="tableUser">
+                <label id="text4">
+                  <a href="https://foursquare.com/user/<%= p.user.foursquare_guid %>" target="_blank">
+                    <%= "#{ p.user.display_name }" %>
+                  </a>
+                </label>
+              </td>
+              <td class="tableLocation">
+                <label id="text4" style="font-weight: bold;">
+                  <%= p.user.location %>
+                </label>
+              </td>
+              <td class="tablePoints">
+                <% if is_democratic %>
+                  <%= "#{ p.dem_total }" %>
+                <% else %>
+                  <%= "#{ p.rep_total }" %>
+                <% end %>
+              </td>
+              <td class="tableTopCompany">
+                <label id="text4">
+                <% if is_democratic %>
+                  <%= link_to "#{ p.dem_company.name }", { :controller => 'companies', :action => 'show', :url_slug => p.dem_company.url_slug } %>
+                <% else %>
+                  <%= link_to "#{ p.rep_company.name }", { :controller => 'companies', :action => 'show', :url_slug => p.rep_company.url_slug } %>
+                <% end %>
+                </label>
+              </td>
+            </tr>
+            
+            <% even_flag = !even_flag %>
+
+          <% end %>
+
+        </tbody>
+      </table>
+    </div>
+  </div>
+<% else %>
+  Standings are not currently available.
+<% end %>

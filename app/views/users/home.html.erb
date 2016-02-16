@@ -1,0 +1,77 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'raphael-pp' %>
+  <%= javascript_include_tag 'graphael' %>
+  <%= javascript_include_tag 'gpie' %>
+<% end %>
+<div id="main">
+  <strong><label id="text2">
+    <%= image_tag( "#{ @current_user.photo_url }", :size => "40x40") %>
+    Welcome, <%= @current_user.first_name %>!
+  </label></strong>  
+  <br><div class="separator"></div><br>
+  <div class="leftpane" style="background-color: #e8e8df;">
+  <% if @current_user.point and @current_user.point.has_points? %>
+    <% if @current_user.point.is_democratic? %>
+      <label id="text35">You support the Democrats with your check-ins.</label>
+      <br>
+      <label id="text35">Blue Points: <%= display_score( @current_user.point.dem_total ) %></label>
+      &nbsp;&nbsp;<label id="text3" style='color:#337099; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @current_user.point.dem_percent * 100 ) }%)" %></label>
+      <br>
+      <label id="text35">Red Points: <%= display_score( @current_user.point.rep_total ) %></label>
+      &nbsp;&nbsp;<label id="text3" style='color:#DF2020; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @current_user.point.rep_percent * 100 ) }%)" %></label>
+      <br>
+    <% elsif @current_user.point.is_republican? %>
+      <label id="text35">You support the Republicans with your check-ins.</label>
+      <br>
+      <label id="text35">Red Points: <%= display_score( @current_user.point.rep_total ) %></label>
+      &nbsp;&nbsp;<label id="text3" style='color:#DF2020; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @current_user.point.rep_percent * 100 ) }%)" %></label>
+      <br>
+      <label id="text35">Blue Points: <%= display_score( @current_user.point.dem_total ) %></label>
+      &nbsp;&nbsp;<label id="text3" style='color:#337099; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @current_user.point.dem_percent * 100 ) }%)" %></label>
+      <br>
+    <% elsif @current_user.point.is_tied? %>
+      <label id="text35">You equally support both parties with your check-ins.</label>
+      <br>
+      <label id="text35">Blue Points: <%= display_score( @current_user.point.dem_total ) %></label>
+      &nbsp;&nbsp;<label id="text3" style='color:#337099; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @current_user.point.dem_percent * 100 ) }%)" %></label>
+      <br>
+      <label id="text35">Red Points: <%= display_score( @current_user.point.rep_total ) %></label>
+      &nbsp;&nbsp;<label id="text3" style='color:#DF2020; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @current_user.point.rep_percent * 100 ) }%)" %></label>
+      <br>
+    <% end %>
+  <% else %>
+    <label id="text35">You don't support either party with your check-ins.</label>
+    <br>
+    <label id="text35">Blue Points: 0 points</label>
+    <br>
+    <label id="text35">Red Points: 0 points</label>
+  <% end %>
+  </div>
+  <div class="rightpane">
+	<div id="map" style="height:90px;width:220px;margin-left:80px;margin-top:-5px;"></div>
+</div>
+  <br><br>
+  <strong><label id="text4">FRIENDS</label></strong>
+  <br><div class="separator"></div>
+  <br>
+  <label id="text4"><%= link_to "My Friends", { :controller => 'users', :action => 'friends' }, { :style => 'font-weight: normal;' } %></label>
+  <div id="spacer_3"></div>
+  <label id="text4"><%= link_to "My Friends' Check-Ins", { :controller => 'users', :action => 'friends_checkins' }, { :style => 'font-weight: normal;' } %></label>
+  <br><br>
+  <strong><label id="text4">POLLING</label></strong>
+  <br><div class="separator"></div>
+  <br>
+  <% if @current_user.party %>
+    <label id="text4">You are currently voting for the <%= link_to @current_user.party.official_name, { :controller => 'parties', :action => 'show', :url_slug => @current_user.party.url_slug }, { :style => 'font-weight: normal;' } %> in our location-based polling. <%= link_to 'Change parties', { :controller => 'users', :action => 'settings' }, { :style => 'font-weight: normal;' } %></label>
+  <% else %>
+    <label id="text4">Looks like you're not participating in our location-based polling. How sad. Click <%= link_to 'here', :controller => 'users', :action => 'settings' %> to start!</label>
+  <% end %>
+  <br>
+  <div class="clear_floats"></div>
+  <br>
+	<%= render :partial => 'users/checkin_history', :locals => { :checkins => @checkins } %>  
+</div>
+<%= javascript_tag render(:partial => 'home_draw.rjs') %>
+<% controller.response.content_type = Mime::HTML %>
+

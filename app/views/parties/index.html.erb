@@ -1,0 +1,16 @@
+<div id="main">
+  <strong><label id="text2">Parties</label></strong>
+  <br><div class="separator"></div><br>
+  <table>  
+    <% @parties.each do |party| %>
+      <tr>
+        <td>
+          <%= link_to image_tag( party.icon_url, :size => "57x57"), { :controller => 'parties', :action => 'show', :url_slug => party.url_slug }  %>
+        </td>
+        <td>
+          &nbsp;&nbsp;<label id="text3"><%= link_to party.official_name, { :controller => 'parties', :action => 'show', :url_slug => party.url_slug }, {:style=>'color:#555555; font-weight:bold;'} %></label>
+        </td>
+      </tr>
+    <% end %>
+  </table>   
+</div>

@@ -1,0 +1,104 @@
+<% content_for :head do %>
+  <%= javascript_include_tag 'application' %>
+  <%= javascript_include_tag 'raphael-pp' %>
+  <%= javascript_include_tag 'graphael' %>
+  <%= javascript_include_tag 'gpie' %>
+<% end %>
+<div id="main">
+  <table>
+    <tr>
+      <td><%= image_tag @party.icon_url, :title => "#{ @party.name } Party", :class => 'float_left' %></td>
+      <td><label id="text1">&nbsp;<%= @party.official_name %></label></td>
+      <td style="padding-left: 50px; float: right;"><%= render :partial => 'layouts/share_buttons' %></td>
+    </tr>
+  </table>
+  <div class="separator"></div>
+  <br>
+  <h2><%= @party.description %></h2>
+  <div class="leftpane"> 
+    <label id="text3">Official Website:&nbsp;</label>
+    <br>
+    <label id="text35"><a href="<%= @party.official_url %>" target="_blank"><%= @party.official_url[7..-1] %></a></label>
+    <br><br>
+    <div id="text3">Social Media:&nbsp;<br>
+      <% if @party.facebook_url %>
+        <a href="<%= @party.facebook_url %>" target="_blank"><img src="/images/facebook.png" title="<%= @party.name %> Party on Facebook" alt="Facebook"></a>
+      <% end %>
+      <% if @party.twitter_url %>
+        <a href="<%= @party.twitter_url %>" target="_blank"><img src="/images/twitter.png" title="<%= @party.name %> Party on Twitter" alt="Twitter"></a>
+      <% end %>
+      <% if @party.youtube_url %>
+        <a href="<%= @party.youtube_url %>" target="_blank"><img src="/images/youtube.png" title="<%= @party.name %> Party on YouTube" alt="YouTube"></a>
+      <% end %>
+    </div>
+  </div>
+  <div class="rightpane"> 
+    <label id="text3">Ideology:&nbsp;</label>
+    <label id="text35">
+      <% @party.ideologies.each do |ideology| %>
+        <br>
+        <a href="<%= ideology.url %>" target="_blank"><%= ideology.name %></a>
+      <% end %>
+    </label>
+    <br><br>
+    <div id="text3">Wikipedia:&nbsp;<br>
+      <a href="<%= @party.wikipedia_url %>" target="_blank"><img src="/images/wikipedia.png" width="48" height="48" title="<%= @party.name %> Party on Wikipedia" alt="Wikipedia"></a>
+    </div>
+    <br>
+  </div>
+	<div class="leftpane">
+		<label id="text3">Top 5 <%= @party.name %> Categories:&nbsp;</label><br>
+		<label id="text35">
+		<% @party.top_categories(5).each do |tc| %>
+			<br>
+			<% category = Category.find( tc.category_id ) %>
+			<%= link_to category.display_name, { :controller => 'categories', :action => 'show', :url_slug => category.url_slug } %>
+			-&nbsp;<%= sprintf( "%.2f", ( tc.total.to_f / @party.total_category_votes.to_f ) * 100 ) %>%
+		<% end %>
+		</label>
+  </div>
+	<div class="rightpane">
+	  <label id="text3"><%= @party.name %> Votes By Gender:&nbsp;</label><br>
+	  <div id="map" style="height:170px;width:300px;"></div>
+	</div>
+  <div class="clear_floats"></div>
+  <br><div class="separator"></div><br>    
+</div>
+
+<div class="column_wrap right_column_inner">
+  <div class="column_outter">
+    <div class="column_inner">
+      <label id="text3"><%= @party.name %>-Controlled States:</label><br><br>
+      <% if @party.states.any? %>
+        <ul id="text35">
+          <% @party.states.each do |state| %>
+            <li>
+              <%= link_to state.name, :controller => 'states', :action => 'show', :url_slug => state.url_slug %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <label id="text35">(none)</label>
+      <% end %>
+    </div>
+  </div>
+  <div class="column_outter">
+    <div class="column_inner">
+      <label id="text3"><%= @party.name %>-Controlled Categories:</label><br><br>
+      <% if @party.categories.any? %>
+        <ul id="text35">
+          <% @party.categories.each do |category| %>
+            <li>
+              <%= link_to category.display_name, :controller => 'categories', :action => 'show', :url_slug => category.url_slug %>
+            </li>
+          <% end %>
+        </ul>
+      <% else %>
+        <label id="text35">(none)</label>
+      <% end %>
+    </div>
+  </div>
+</div>
+<%= javascript_tag render(:partial => 'party_draw.rjs') %>
+<% controller.response.content_type = Mime::HTML %>
+	

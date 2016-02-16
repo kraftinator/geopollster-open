@@ -1,0 +1,22 @@
+<div id="power_changes">
+  <div id="pc_heading">RECENT POLLING RESULTS:</div>
+  <% power_changes.each do |pc| %>
+    <div id="pc_item">
+      <div id="pc_party">
+        <%= link_to image_tag( pc.winning_party.icon_url, :size => "57x57", :title => pc.winning_party.official_name, :alt => pc.winning_party.official_name ), 
+            :controller => 'parties', :action => 'show', :url_slug => pc.winning_party.url_slug %>
+      </div>
+      <div id="pc_text"><%= raw( show_power_change( pc ) ) %></div>
+      <div id="category_image">
+        <% if pc.object.instance_of? Venue %>
+          <%= link_to image_tag( pc.object.category.icon_url, :title => pc.object.category.display_name ),
+              :controller => 'categories', :action => 'show', :url_slug => pc.object.category.url_slug %>
+        <% elsif pc.object.instance_of? Category %>
+          <%= link_to image_tag( pc.object.icon_url , :title => pc.object.display_name ),
+              :controller => 'categories', :action => 'show', :url_slug => pc.object.url_slug %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+

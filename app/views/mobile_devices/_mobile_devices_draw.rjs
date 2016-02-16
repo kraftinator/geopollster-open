@@ -1,0 +1,93 @@
+ page << "
+	var colors = returnColorArray();
+	var opaque = returnOpaqueColorArray();
+	var parties = [];
+	var slugs = [];
+	var androidResults = [];
+	var iphoneResults = [];
+	var blackberryResults = [];
+	for (var x = 0; x < 4; x++) {
+		androidResults[x] = [];
+		iphoneResults[x] = [];
+		blackberryResults[x] = [];
+	}
+	var count = 1;
+ "
+ for p in @parties
+	partyName = p.member_name_plural
+	partySlug = p.url_slug
+	page << "
+		parties[count] = '#{partyName}';
+		slugs[count] = '#{partySlug}';
+		count += 1;
+	"
+end
+page << "count = 0;"
+ for a in @android_results
+	partyId = a.party_id
+	total = a.total
+	page << "
+		androidResults[0][count] = parties[#{partyId}] + ' - %%.%%';
+		androidResults[1][count] = #{total};
+		androidResults[2][count] = opaque[#{partyId}];
+		androidResults[3][count] = slugs[#{partyId}];
+		count = count + 1;
+	"
+end
+page << "count = 0;"
+for i in @iphone_results
+	partyId = i.party_id
+	total = i.total
+	page << "
+		iphoneResults[0][count] = parties[#{partyId}] + ' - %%.%%';
+		iphoneResults[1][count] = #{total};
+		iphoneResults[2][count] = opaque[#{partyId}];
+		iphoneResults[3][count] = slugs[#{partyId}];
+		count = count + 1;
+	"
+end
+page << "count = 0;"
+for b in @blackberry_results
+	partyId = b.party_id
+	total = b.total
+	page << "
+		blackberryResults[0][count] = parties[#{partyId}] + ' - %%.%%';
+		blackberryResults[1][count] = #{total};
+		blackberryResults[2][count] = opaque[#{partyId}];
+		blackberryResults[3][count] = slugs[#{partyId}];
+		count = count + 1;
+	"
+end
+page << "
+	var androidPaper = Raphael('android_chart', 1800, 1800, 0, 0);
+	var blackberryPaper = Raphael('blackberry_chart', 1800, 1800, 0, 0);
+	var iphonePaper = Raphael('iphone_chart', 1800, 1800, 0, 0);
+	var mult = 3.5;
+	var mapMulti = 0.9;
+	var dimensionX = 180 * mult;
+	var dimensionY = 260 * mult;
+	var fontSize = 12 * mapMulti;
+	var headerSize = 16 * mapMulti;
+	var textMult = 0;
+	var textStyle = '';
+	textYAxis = 35;
+	if (navigator.userAgent.search(/MSIE/) === -1) {
+		fontSize = 12 * mult;
+		headerSize = 16 * mult;
+		textMult = 0.4;
+		textYAxis = 25;
+		textStyle = 'serif';
+	}
+	androidPaper.setView((750 * mapMulti) + 'px', (750 * mapMulti) + 'px');
+	androidPaper.rect(5,0, dimensionX, dimensionY, 5*mult).attr({fill:'#e8e8df', 'fill-opacity':0.7, 'stroke-color':'#555'});
+	androidPaper.text(5 + (90*mult), 0 + (18*mult), 'Android').attr({fill:'#555555', 'font-size':headerSize + 'px', 'font-family':textStyle, 'font-weight':'bold'});
+	mainPageChart(androidResults, androidPaper, 0, 0, dimensionX, dimensionY, fontSize);
+	blackberryPaper.setView((750 * mapMulti) + 'px', (750 * mapMulti) + 'px');
+	blackberryPaper.rect(5,0, dimensionX, dimensionY, 5*mult).attr({fill:'#e8e8df', 'fill-opacity':0.7, 'stroke-color':'#555'});
+	blackberryPaper.text(5 + (90*mult), 0 + (18*mult), 'BlackBerry').attr({fill:'#555555', 'font-size':headerSize + 'px', 'font-family':textStyle, 'font-weight':'bold'});
+	mainPageChart(blackberryResults, blackberryPaper, 0, 0, dimensionX, dimensionY, fontSize);
+	iphonePaper.setView((750 * mapMulti) + 'px', (750 * mapMulti) + 'px');
+	iphonePaper.rect(5,0, dimensionX, dimensionY, 5*mult).attr({fill:'#e8e8df', 'fill-opacity':0.7, 'stroke-color':'#555'});
+	iphonePaper.text(5 + (90*mult), 0 + (18*mult), 'iPhone').attr({fill:'#555555', 'font-size':headerSize + 'px', 'font-family':textStyle, 'font-weight':'bold'});
+	mainPageChart(iphoneResults, iphonePaper, 0, 0, dimensionX, dimensionY, fontSize);
+"

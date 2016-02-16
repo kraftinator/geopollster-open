@@ -1,0 +1,21 @@
+<div id="main">
+  <strong><label id="text2"><%= @category.display_name %></label></strong>
+  <br><div class="separator"></div><br>
+  <% @category.children.each do |category| %>
+    <div style="padding-right:10px; padding-top:3px; float:left;">
+      <%= link_to image_tag( category.icon_url, :title => category.display_name, :alt => category.display_name ), 
+          :controller => 'categories', :action => 'show', :url_slug => category.url_slug %>
+    </div>
+    <div style="line-height:37px; padding-right:10px; float:left;">
+      <label id="text3"><%= link_to category.display_name, { :controller => 'categories', :action => 'show', :url_slug => category.url_slug }, {:style=>'color:#555555; font-weight:bold;'} %></label>
+    </div>
+    <div>
+      <% if category.party %>
+        <%= link_to image_tag( category.party.icon_url, :size => '42x42', :title => category.display_name, :alt => category.display_name ), 
+          :controller => 'categories', :action => 'show', :url_slug => category.url_slug %>
+        </div>
+      <% end %>
+    <div class="clear_floats"></div>
+    <br>
+  <% end %>
+</div>

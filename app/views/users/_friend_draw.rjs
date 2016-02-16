@@ -1,0 +1,33 @@
+page << "
+	var paper = Raphael('map', 300, 170, 0, 0);
+	var colors = returnDemRepColorArray();
+	var colorArray = [];
+	var numberArray = [];
+	var legendArray = [];
+	var x = 0;
+	var y = 1;
+"
+demAmount = @friend.point.dem_total
+repAmount = @friend.point.rep_total
+page << "
+	if (#{repAmount} > #{demAmount}) {
+		x = 1;
+		y = 0;
+	}
+	if (#{demAmount} > 0) {
+		numberArray[x] = #{demAmount};
+		legendArray[x] = 'Democrats';
+		colorArray[x] = colors[1];
+	}
+	if (#{repAmount} > 0) {
+		numberArray[y] = #{repAmount};
+		legendArray[y] = 'Republicans';
+		colorArray[y] = colors[2];
+	}
+	if ((#{repAmount} === 0) && (#{demAmount} === 0)) {
+		numberArray[0] = 1;
+		legendArray[0] = 'No Data';
+		colorArray[0] = colors[0];
+	}
+"
+page << "drawPieChart(colorArray, numberArray, legendArray, 0, 'left', 0, .5);"

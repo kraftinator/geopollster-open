@@ -1,0 +1,18 @@
+<div id="main">
+  <strong><label id="text2">States</label></strong>
+  <br><div class="separator"></div><br>
+  <table>  
+    <% @states.each do |state| %>
+      <tr>
+        <td>
+          <% if state.party %>
+            <%= link_to image_tag( state.party.icon_url, :size => "47x47"), { :controller => 'states', :action => 'show', :url_slug => state.url_slug }  %>
+          <% end %>
+        </td>
+        <td>
+          &nbsp;&nbsp;<label id="text3"><%= link_to state.name, { :controller => 'states', :action => 'show', :url_slug => state.url_slug }, {:style=>'color:#555555; font-weight:bold;'} %></label>
+        </td>
+      </tr>
+    <% end %>
+  </table>   
+</div>

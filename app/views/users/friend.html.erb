@@ -1,0 +1,115 @@
+<% if @friend %>
+<% content_for :head do %>
+  <%= javascript_include_tag 'raphael-pp' %>
+  <%= javascript_include_tag 'graphael' %>
+  <%= javascript_include_tag 'gpie' %>
+<% end %>
+<% end %>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div id="main">
+  <strong><label id="text2">
+    <% if @friend %>
+      <%= image_tag( "#{ @friend.photo_url }", :size => "40x40") %>
+      <%= @friend.full_name %>
+    <% elsif @cached_friend %>
+      <%= image_tag( "#{ @cached_friend.photo_url }", :size => "40x40") %>
+      <%= "#{ @cached_friend.first_name } #{ @cached_friend.last_name }" %>
+    <% end %>
+  </label></strong>
+  <br><div class="separator"></div><br>
+  <div class="leftpane" style="width:59%">
+	<% if @friend %>
+  	<% if @friend.point and @friend.point.has_points? %>
+	    <% if @friend.point.is_democratic? %>
+        <label id="text3"><%= @friend.first_name %> supports the Democrats with <%= @friend.gender.possessive_pronoun %> check-ins.</label>
+        <br>
+        <label id="text3">Blue Points: <%= display_score( @friend.point.dem_total ) %></label>
+        &nbsp;&nbsp;<label id="text35" style='color:#337099; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @friend.point.dem_percent * 100 ) }%)" %></label>
+        <br>
+        <label id="text3">Red Points: <%= display_score( @friend.point.rep_total ) %></label>
+        &nbsp;&nbsp;<label id="text35" style='color:#DF2020; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @friend.point.rep_percent * 100 ) }%)" %></label>
+        <br>
+      <% elsif @friend.point.is_republican? %>
+        <label id="text3"><%= @friend.first_name %> supports the Republicans with <%= @friend.gender.possessive_pronoun %> check-ins.</label>
+        <br>
+        <label id="text3">Red Points: <%= display_score( @friend.point.rep_total ) %></label>
+        &nbsp;&nbsp;<label id="text35" style='color:#DF2020; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @friend.point.rep_percent * 100 ) }%)" %></label>
+        <br>
+        <label id="text3">Blue Points: <%= display_score( @friend.point.dem_total ) %></label>
+        &nbsp;&nbsp;<label id="text35" style='color:#337099; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @friend.point.dem_percent * 100 ) }%)" %></label>
+        <br>
+      <% elsif @friend.point.is_tied? %>
+        <label id="text3"><%= @friend.first_name %> equally supports both parties with <%= @friend.gender.possessive_pronoun %> check-ins.</label>
+        <br>
+        <label id="text3">Blue Points: <%= display_score( @friend.point.dem_total ) %></label>
+        &nbsp;&nbsp;<label id="text35" style='color:#337099; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @friend.point.dem_percent * 100 ) }%)" %></label>
+        <br>
+        <label id="text3">Red Points: <%= display_score( @friend.point.rep_total ) %></label>
+        &nbsp;&nbsp;<label id="text35" style='color:#DF2020; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @friend.point.rep_percent * 100 ) }%)" %></label>
+        <br>
+      <% end %>
+    <% else %>
+      <label id="text35"><%= @friend.first_name %> doesn't support either party with <%= @friend.gender.possessive_pronoun %> check-ins.</label>
+      <br>
+      <label id="text35">Blue Points: 0 points</label>
+      <br>
+      <label id="text35">Red Points: 0 points</label>
+    <% end %>
+      </div>
+  <div class="rightpane" style="width:40%;">
+  <div id="map" style="height:150px;width:250px;"></div>
+  </div>
+    <br><br>	
+	  <%= render :partial => 'users/friend_checkins', :locals => { :checkins => @friend.checkins } %>  
+  <% elsif @cached_friend %>
+    <label id="text4">Your friend <%= @cached_friend.first_name %> hasn't joined GeoPollster yet. How sad. You should invite <%= @cached_friend.gender.object_pronoun %>!</label>
+    <br>
+    
+      <div style="float: left;">
+        <% if @cached_friend.twitter_handle %>
+          <label id="text4">
+  		      <a href="https://twitter.com/intent/tweet?screen_name=<%= @cached_friend.twitter_handle %>&text=<%= twitter_invite %>">
+  		        <div style="padding-top: 15px;">
+  		          <table style="padding-right: 15px;">
+  		            <tr>
+  		              <td>
+	  		              <%= image_tag("/images/twitter2.png", :title => "Invite #{ @cached_friend.first_name } to GeoPollster", :size => "36x36", :class => 'float_left', :style => 'padding-left:0px;') %>
+	  		            </td>
+	  		            <td>
+		  	              Invite via Twitter
+		  	            </td>
+		  	          </tr>
+		  	        </table>
+		  	      </div>
+		        </a>
+		      </label>
+        <% end %>
+      </div>
+
+      <div>
+        <% if @cached_friend.last_checkin_guid %>
+          <label id="text4">
+  		        <div style="padding-top: 15px;">
+  		          <table>
+  		            <tr>
+  		              <td>
+                      <%= link_to image_tag( "/images/foursquare2.png", :title => "Invite #{ @cached_friend.first_name } to GeoPollster", :size => "30x30" ), 
+                          :controller => 'users', :action => 'foursquare_invite', :checkin_id => @cached_friend.last_checkin_guid %>
+	  		            </td>
+	  		            <td>
+                      <%= link_to 'Invite via Foursquare', :controller => 'users', :action => 'foursquare_invite', :checkin_id => @cached_friend.last_checkin_guid %>
+		  	            </td>
+		  	          </tr>
+		  	        </table>
+		  	      </div>
+		      </label>
+		      <br>
+        <% end %>
+      </div>
+  <% end %>
+</div>
+<% if @friend %>
+	<%= javascript_tag render(:partial => 'friend_draw.rjs') %>
+	<% controller.response.content_type = Mime::HTML %>
+<% end %>
+

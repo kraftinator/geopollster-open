@@ -1,0 +1,15 @@
+<div id="main">
+  <label id="text3"></label>
+  <% form_tag({:action => 'create_invite'}, {:method => 'post'}) do %>
+    <div id="errors"><label><% if @errors %><%= @errors %><br><br><% end %></label></div>
+    <label id="text35">Post a comment to <%= @first_name %>'s check-in at <%= @venue_name %>:</label>
+    <div id="spacer_3"></div>
+    <textarea name="comment" id="comment" style='width: 400px;	height: 60px;	border: 3px solid #cccccc;	padding: 5px;	font-family: Tahoma, sans-serif; '>Join me on GeoPollster to find out if the places you check-in to give campaign contributions to Democrats or Republicans. http://4sq.com/UjJYLD</textarea>
+    <input type="hidden" name="checkin_id" value="<%= @checkin_id %>">
+    <input type="hidden" name="first_name" value="<%= @first_name %>">
+    <input type="hidden" name="venue_name" value="<%= @venue_name %>">
+    <div id="spacer_3"></div>
+    <label id="text4" ><%= submit_tag ' Post to Foursquare ' %></label>
+    <label id="text4">&nbsp;&nbsp;&nbsp;&nbsp;<%= link_to 'Cancel', { :controller => 'users', :action => 'friend', :foursquare_id => @friend_id }, { :style => 'font-weight: normal;' } %></label>
+  <% end %>
+</div>

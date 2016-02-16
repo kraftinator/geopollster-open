@@ -1,0 +1,44 @@
+<div id="main">
+  <strong><label id="text2">Friends' Check-Ins</label></strong>
+  <br><div class="separator"></div><br>
+  
+	<% if @point and @point.has_points? %>
+    <% if @point.is_democratic? %>
+      <label id="text35">Your friends support the Democrats with their check-ins.</label>
+      <br>
+      <label id="text35">Blue Points: <%= display_score( @point.dem_total ) %></label>
+      &nbsp;&nbsp;<label id="text3" style='color:#337099; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @point.dem_percent * 100 ) }%)" %></label>
+      <br>
+      <label id="text35">Red Points: <%= display_score( @point.rep_total ) %></label>
+      &nbsp;&nbsp;<label id="text3" style='color:#DF2020; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @point.rep_percent * 100 ) }%)" %></label>
+      <br>
+    <% elsif @point.is_republican? %>
+      <label id="text35">Your friends support the Republicans with their check-ins.</label>
+      <br>
+      <label id="text35">Red Points: <%= display_score( @point.rep_total ) %></label>
+      &nbsp;&nbsp;<label id="text3" style='color:#DF2020; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @point.rep_percent * 100 ) }%)" %></label>
+      <br>
+      <label id="text35">Blue Points: <%= display_score( @point.dem_total ) %></label>
+      &nbsp;&nbsp;<label id="text3" style='color:#337099; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @point.dem_percent * 100 ) }%)" %></label>
+      <br>
+    <% elsif @point.is_tied? %>
+      <label id="text35">Your friends equally support both parties with their check-ins.</label>
+      <br>
+      <label id="text35">Blue Points: <%= display_score( @point.dem_total ) %></label>
+      &nbsp;&nbsp;<label id="text3" style='color:#337099; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @point.dem_percent * 100 ) }%)" %></label>
+      <br>
+      <label id="text35">Red Points: <%= display_score( @point.rep_total ) %></label>
+      &nbsp;&nbsp;<label id="text3" style='color:#DF2020; font-weight:bold;'><%= "(#{ sprintf( "%.0f", @point.rep_percent * 100 ) }%)" %></label>
+      <br>
+    <% end %>
+  <% else %>
+      <label id="text35">Your friends don't support either party with their check-ins.</label>
+      <br>
+      <label id="text35">Blue Points: 0 points</label>
+      <br>
+      <label id="text35">Red Points: 0 points</label>
+  <% end %>
+  
+  <br><br>	
+	<%= render :partial => 'users/recent_checkins', :locals => { :checkins => @checkins } %>  
+</div>

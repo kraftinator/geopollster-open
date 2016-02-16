@@ -1,0 +1,21 @@
+<div id="main">
+  <strong><label id="text2">Companies</label></strong>
+  <br><div class="separator"></div><br>
+  <table>  
+    <% @companies.each do |company| %>
+      <% next if !company.is_partisan? %>
+      <tr>
+        <td>
+          <% if company.is_democratic? %>
+            <%= link_to image_tag( "/images/democratic.png", :size => "47x47"), { :controller => 'companies', :action => 'show', :url_slug => company.url_slug }  %>
+          <% elsif company.is_republican? %>
+            <%= link_to image_tag( "/images/republican.png", :size => "47x47" ), { :controller => 'companies', :action => 'show', :url_slug => company.url_slug } %>
+          <% end %>
+        </td>
+        <td>
+          &nbsp;&nbsp;<label id="text3"><%= link_to company.short_name, { :controller => 'companies', :action => 'show', :url_slug => company.url_slug }, {:style=>'color:#555555; font-weight:bold;'} %></label>
+        </td>
+      </tr>
+    <% end %>
+  </table>   
+</div>

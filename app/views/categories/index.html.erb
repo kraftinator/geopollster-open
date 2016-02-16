@@ -1,0 +1,15 @@
+<div id="main">
+  <strong><label id="text2">Categories</label></strong>
+  <br><div class="separator"></div><br>
+  <% @categories.each do |category| %>
+      <div style="padding-right:10px; float:left;">
+        <%= link_to image_tag( category.icon_url, :title => category.display_name, :alt => category.display_name ), 
+            :controller => 'categories', :action => 'top_level', :url_slug => category.url_slug %>
+      </div>
+      <div style="line-height:32px;">
+        <label id="text3"><%= link_to category.display_name, { :controller => 'categories', :action => 'top_level', :url_slug => category.url_slug }, {:style=>'color:#555555; font-weight:bold;'} %></label>
+      </div>
+      <div class="clear_floats"></div>
+      <br>
+  <% end %>
+</div>

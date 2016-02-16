@@ -1,0 +1,9 @@
+<% if company.is_strongly_democratic? %>
+  &nbsp;<label style='color:#337099; font-weight:bold;'><%= "(Strongly Democratic)" %></label>
+<% elsif company.is_democratic? %>
+  &nbsp;<label style='color:#337099; font-weight:bold;'><%= "(Democratic)" %></label>
+<% elsif company.is_strongly_republican? %>
+  &nbsp;<label style='color:#DF2020;; font-weight:bold;'><%= "(Strongly Republican)" %></label>
+<% elsif company.is_republican? %>
+  &nbsp;<label style='color:#DF2020;; font-weight:bold;'><%= "(Republican)" %></label>
+<% end %>

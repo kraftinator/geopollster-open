@@ -1,0 +1,15 @@
+<label style='font-weight:bold;'>
+  <% if company.is_democratic? %>
+    <label style='color:#337099;'><%= "Dem - #{ sprintf( "%.0f", company.party_breakdown.dem_percent * 100 ) }%" %></label>
+    <br><label style='color:#DF2020;'><%= "Rep - #{ sprintf( "%.0f", company.party_breakdown.rep_percent * 100 ) }%" %></label>
+  <% elsif company.is_republican? %>
+    <label style='color:#DF2020;'><%= "Rep - #{ sprintf( "%.0f", company.party_breakdown.rep_percent * 100 ) }%" %></label>
+    <br><label style='color:#337099;'><%= "Dem - #{ sprintf( "%.0f", company.party_breakdown.dem_percent * 100 ) }%" %></label>
+  <% else %>
+    <label style='color:<%= party_color( company, 1 ) %>;'><%= "#{ party_abbrev( company, 1 ) } - #{ party_percent( company, 1 ) }" %></label>
+    <br>
+    <label style='color:<%= party_color( company, 2 ) %>;'><%= "#{ party_abbrev( company, 2 ) } - #{ party_percent( company, 2 ) }" %></label>
+    <br>
+    <label style='color:<%= party_color( company, 3 ) %>;'><%= "#{ party_abbrev( company, 3 ) } - #{ party_percent( company, 3 ) }" %></label>
+  <% end %>
+</label>

@@ -1,0 +1,216 @@
+page << "
+	var paper = Raphael('map', 3500, 1800, 0, 0);
+	var chartPaper = Raphael('bottompane', 3500, 1000, 0, 0);
+	var usa = returnUSAHash(paper);
+	var colors = returnColorArray();
+	var opaque = returnOpaqueColorArray();
+	var total = [];
+	var countryResults = [];
+	var stateResults = [];
+	var stateParty = [];
+	var parties = [];
+	var slugs = [];
+	var count = 1;
+	var countryId = 1;
+	var totalHold, partyHold, colorHold;
+	var holdParties, holdTotal, holdOpaque;
+	var maleResults = [];
+	var femaleResults = [];
+	var androidResults = [];
+	var iphoneResults = [];
+	var blackberryResults = [];
+	for (var x = 0; x < 4; x++) {
+		countryResults[x] = [];
+		maleResults[x] = [];
+		femaleResults[x] = [];
+		androidResults[x] = [];
+		iphoneResults[x] = [];
+		blackberryResults[x] = [];
+	}
+	countryResults[4] = [];
+"
+for p in @parties
+	partyName = p.member_name_plural
+	partySlug = p.url_slug
+	page << "
+		parties[count] = '#{partyName}';
+		slugs[count] = '#{partySlug}';
+		count += 1;
+	"
+end
+page << "count = 1;"
+for s in @states
+	stateParty = s.party_id
+	stateAbbrev = s.abbrev
+	stateId = s.id
+	page << "
+		usa['#{stateAbbrev}'].attr({fill:colors[#{stateParty}]});
+		stateParty[count] = #{stateParty};
+		count = count + 1;
+	"
+end
+page << "count = 0;"
+for m in @male_results
+	partyId = m.party_id
+	total = m.total
+	page << "
+		maleResults[0][count] = parties[#{partyId}] + ' - %%.%%';
+		maleResults[1][count] = #{total};
+		maleResults[2][count] = opaque[#{partyId}];
+		maleResults[3][count] = slugs[#{partyId}];
+		count = count + 1;
+	"
+end
+page << "count = 0;"
+for f in @female_results
+	partyId = f.party_id
+	total = f.total
+	page << "
+		femaleResults[0][count] = parties[#{partyId}] + ' - %%.%%';
+		femaleResults[1][count] = #{total};
+		femaleResults[2][count] = opaque[#{partyId}];
+		femaleResults[3][count] = slugs[#{partyId}];
+		count = count + 1;
+	"
+end
+page << "count = 0;"
+for a in @android_results
+	partyId = a.party_id
+	total = a.total
+	page << "
+		androidResults[0][count] = parties[#{partyId}] + ' - %%.%%';
+		androidResults[1][count] = #{total};
+		androidResults[2][count] = opaque[#{partyId}];
+		androidResults[3][count] = slugs[#{partyId}];
+		count = count + 1;
+	"
+end
+page << "count = 0;"
+for i in @iphone_results
+	partyId = i.party_id
+	total = i.total
+	page << "
+		iphoneResults[0][count] = parties[#{partyId}] + ' - %%.%%';
+		iphoneResults[1][count] = #{total};
+		iphoneResults[2][count] = opaque[#{partyId}];
+		iphoneResults[3][count] = slugs[#{partyId}];
+		count = count + 1;
+	"
+end
+page << "count = 0;"
+for e in @blackberry_results
+	partyId = e.party_id
+	total = e.total
+	page << "
+		blackberryResults[0][count] = parties[#{partyId}] + ' - %%.%%';
+		blackberryResults[1][count] = #{total};
+		blackberryResults[2][count] = opaque[#{partyId}];
+		blackberryResults[3][count] = slugs[#{partyId}];
+		count = count + 1;
+	"
+end
+page << "count = 0;"
+for c in @country_results
+	partyId = c.party_id
+	total = c.total
+	page << "
+		countryResults[0][count] = parties[#{partyId}] + ' - %%.%%';  //0 = Party Name for Legend
+		countryResults[1][count] = #{total};                                        //1 = Vote total for party
+		countryResults[2][count] = opaque[#{partyId}];                      //2 = Color for Legend
+		countryResults[3][count] = slugs[#{partyId}];
+		countryResults[4][count] = #{partyId};                                    //3 = Party Id
+		count = count + 1;
+	"
+end
+stateId = -1
+for s in @state_results
+	if (stateId != s.object_id)
+		stateId = s.object_id
+		page << "
+			count = 0;
+			stateResults[#{stateId}] = [];
+			stateResults[#{stateId}][0] = [];
+			stateResults[#{stateId}][1] = [];
+			stateResults[#{stateId}][2] = [];
+			stateResults[#{stateId}][3] = [];
+			stateResults[#{stateId}][4] = [];
+			total[#{stateId}] = [];
+		"
+	end
+	partyId = s.party_id
+	total = s.total
+	page << "
+		stateResults[#{stateId}][0][count] = parties[#{partyId}] + ' - %%.%%';  //0 = Party Name for Legend
+		stateResults[#{stateId}][1][count] = #{total};                                        //1 = Vote total for party
+		stateResults[#{stateId}][2][count] = opaque[#{partyId}];                      //2 = Color for Legend
+		stateResults[#{stateId}][3][count] = slugs[#{partyId}];
+		stateResults[#{stateId}][4][count] = #{partyId};                                    //3 = Party Id
+		total[#{stateId}][count] = #{total};
+		count += 1;
+	"
+end
+page << "
+	for (count = 1;count < 52; count++) {
+		if (stateResults[count]) {
+			if (stateResults[count][0][0] != stateParty[count]) {
+				for (var x = 1;x < 6; x++) {
+					if (stateResults[count][0][x]) {
+						if (stateResults[count][0][x] === stateParty[count]) {
+							partyHold = stateResults[count][0][x];
+							totalHold = stateResults[count][1][x];
+							colorHold = stateResults[count][2][x];
+							stateResults[count][0][x] = stateResults[count][0][0];
+							stateResults[count][1][x] = stateResults[count][1][0];
+							stateResults[count][2][x] = stateResults[count][2][0];
+							stateResults[count][0][0] = partyHold;
+							stateResults[count][1][0] = totalHold;
+							stateResults[count][2][0] = colorHold;
+						}
+					}
+				}
+			}
+		}	
+	}
+"
+page << "
+	var mult = 3.5;
+	var mapMulti = 0.9;
+	var boxX = 815 * mult;
+	var boxY = 250 * mult;
+	var dimensionX = 180 * mult;
+	var dimensionY = 260 * mult;
+	var fontSize = 12 * mapMulti;
+	var headerSize = 16 * mapMulti;
+	var textMult = 0;
+	var textStyle = '';
+	textYAxis = 35;
+	if (navigator.userAgent.search(/MSIE/) === -1) {  //modify if not IE
+		fontSize = 12 * mult;
+		headerSize = 16 * mult;
+		textMult = 0.4;
+		textYAxis = 25;
+		textStyle = 'serif';
+	}
+	stateLogic(paper, chartPaper, usa, countryResults, stateResults, parties, total);
+	
+	chartPaper.rect(0, 5, dimensionX, dimensionY, 5*mult).attr({fill: '#e8e8df', 'fill-opacity':0.7, 'stroke-color':'#555'});
+	chartPaper.text(0 + (90*mult), 5 + (18*mult), 'Men').attr({fill:'#555555', 'font-size':headerSize + 'px', 'font-family':textStyle, 'font-weight':'bold'});
+	mainPageChart(maleResults, chartPaper, 0, -10*mult, dimensionX, dimensionY, fontSize, 0, 65);
+	
+	chartPaper.rect(dimensionX+(10*mult), 5, dimensionX, dimensionY, 5*mult).attr({fill: '#e8e8df', 'fill-opacity':0.7, 'stroke-color':'#555'});
+	chartPaper.text(dimensionX + (10*mult) + (90*mult),5+ (18*mult), 'Women').attr({fill:'#555555', 'font-size':headerSize + 'px', 'font-family':textStyle, 'font-weight':'bold'});
+	mainPageChart(femaleResults, chartPaper, dimensionX + 10*mult, 0, dimensionX, dimensionY, fontSize);
+	
+	chartPaper.rect((dimensionX*2)+(20*mult), 5, dimensionX, dimensionY, 5*mult).attr({fill: '#e8e8df', 'fill-opacity':0.7, 'stroke-color':'#555'});
+	chartPaper.text((dimensionX*2) + (20*mult)+ (90*mult), 5+(18*mult), 'Android').attr({fill:'#555555', 'font-size':headerSize + 'px', 'font-family':textStyle, 'font-weight':'bold'});
+	mainPageChart(androidResults,chartPaper, ((dimensionX*2) + (20*mult)), 0, dimensionX, dimensionY, fontSize);
+	
+	chartPaper.rect(((dimensionX*3) + (30*mult)), 5, dimensionX, dimensionY, 5*mult).attr({fill: '#e8e8df', 'fill-opacity':0.7, 'stroke-color':'#555'});
+	chartPaper.text(((dimensionX*3) + (30*mult) + (90*mult)), 5+(18*mult), 'BlackBerry').attr({fill:'#555555', 'font-size':headerSize + 'px', 'font-family':textStyle, 'font-weight':'bold'});
+	mainPageChart(blackberryResults, chartPaper, ((dimensionX*3) + (30*mult)), 0, dimensionX, dimensionY, fontSize);
+
+	chartPaper.rect(((dimensionX*4) + (40*mult)), 5, dimensionX, dimensionY, 5*mult).attr({fill: '#e8e8df', 'fill-opacity':0.7, 'stroke-color':'#555'});
+	chartPaper.text(((dimensionX*4) + (40*mult) + (90*mult)), 5+(18*mult), 'iPhone').attr({fill:'#555555', 'font-size':headerSize + 'px', 'font-family':textStyle, 'font-weight':'bold'});
+	mainPageChart(iphoneResults, chartPaper, ((dimensionX*4) + (40*mult)), 0, dimensionX, dimensionY, fontSize);
+	chartPaper.setView((1000 *mapMulti) + 'px', (285 * mapMulti) + 'px');
+"

@@ -1,0 +1,26 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'raphael-pp' %>
+	<%= javascript_include_tag 'graphael' %>
+	<%= javascript_include_tag 'gpie' %>
+<% end %>
+<div id="main">
+  <div style="padding-right:10px; padding-top:3px; float:left;">
+    <%= link_to image_tag(@venue.category.icon_url, :title => @venue.category.display_name, :class => 'float_left'), :controller => 'categories', :action => 'show', :url_slug => @venue.category.url_slug %>
+  </div>
+  <div style="line-height:47px; padding-right:10px; float:left;">
+    <strong><label id="text2"><a href="http://foursquare.com/venue/<%= @venue.foursquare_guid %>" target="_blank" style="color:#555555;"><%= @venue.name %></a></label></strong>
+  </div>
+  <div style="float: right;"><%= render :partial => 'layouts/share_buttons' %></div>
+  <div id="spacer_3"></div>
+  <label id="text4"><b>Category:</b>&nbsp;&nbsp;<%= link_to @venue.category.display_name, :controller => 'categories', :action => 'show', :url_slug => @venue.category.url_slug %></label>
+  <div id="spacer_3"></div>
+  <label id="text2">
+    <%= link_to "#{ @venue.city.full_name }", {:controller => 'cities', :action => 'show', :id => @venue.city}, {:style=>'color:#555555; font-weight:normal;'} %>
+    &nbsp;&nbsp;
+    <%= link_to "#{ @venue.zip_code.name }", {:controller => 'zip_codes', :action => 'show', :name => @venue.zip_code.name}, {:style=>'color:#555555; font-weight:normal;'} %>
+  </label>
+  <br><div class="separator"></div><br>
+  <div id="map" style="height:300px"></div>
+</div>
+<%= javascript_tag render(:partial => 'venue_draw.rjs') %>
+<% controller.response.content_type = Mime::HTML %>

@@ -1,0 +1,112 @@
+<div id="main">
+ 
+  <strong><label id="text2">FAQ</label></strong>
+  <br><div class="separator"></div><br>
+ 
+  <div style="width:500px; float:left; padding-right:100px;">
+    
+    <%= image_tag("geopollster-no-logo2.jpg", :title => 'GeoPollster' ) %>
+
+    <br><br>
+    <strong><label id="text3">What is GeoPollster?</label></strong>
+    <br><br>
+    <label id="text4">
+      GeoPollster empowers citizens by providing location-based campaign contribution alerts.
+      When a GeoPollster user checks-in to a venue using Foursquare, GeoPollster sends them an alert telling them how much
+      money the venue's company has given to political campaigns.
+      <div style="padding-top: 15px;"></div>
+      GeoPollster also provides real-time location-based political polling.
+    </label>
+    
+    <br><br><br>
+    <strong><label id="text3">Where does GeoPollster's campaign finance data come from?</label></strong>
+    <br><br>
+    <label id="text4">
+      Our campaign finance data comes from the nonpartisan, nonprofit <a href="http://www.opensecrets.org/" target="_blank" style="font-weight: normal;">OpenSecrets.org</a>. Click <a href="http://www.opensecrets.org/donate/" target="_blank" style="font-weight: normal;">here</a> to donate to them.
+    </label>
+   
+    <br><br><br>
+    <strong><label id="text3">What are partisan points?</label></strong>
+    <br><br>
+    <label id="text4">
+      GeoPollster users receive partisan points when they check-in to venues that give campaign contributions. They
+      receive Democratic points at venues that give mostly to Democrats, and Republican points at venues that give mostly
+      to Republicans. Partisan points help users understand how their spending habits subsidise politicians. When logged in, users can
+      see how their partisan points compare with their friends. Also, our <%= link_to 'GeoPollster Standings', { :controller => 'standings' },  :style => 'font-weight: normal'   %>
+      page shows the top partisan points earners from around the around.
+    </label>
+    
+    <br><br><br>
+    <strong><label id="text3">How do partisan points work?</label></strong>
+    <br><br>
+    <label id="text4">
+      A GeoPollster user receives one Democratic partisan point if they check-in to a venue that gives most of their campaign contribution money
+      to Democrats. If the venue gives more than two-thirds of their campaign contributions to Democrats, the user receives
+      two Democratic partisan points. Similarly, a GeoPollster user receives one Republican partisan point if they check-in to a venue that gives mostly to Republicans.
+      If the venue gives more than two-thirds to Republicans, the user receives two Republican partisan points.
+    </label>
+    
+    <br><br><br>
+    <strong><label id="text3">How do I sign up?</label></strong>
+    <br><br>
+    <label id="text4">
+        Signing up is easy.  First, you need to have a Foursquare account.  If you don't have one, you can create one
+        <a href="https://foursquare.com/signup/" target="_blank" style="font-weight: normal;">here</a>.  Once you have a Foursquare account, you can <%= link_to 'sign up', { :controller => 'oauth', :action => 'start' },  :style => 'font-weight: normal' %> for GeoPollster.
+    </label>
+
+    <br><br><br>
+    <strong><label id="text3">Where can I user GeoPollster?</label></strong>
+    <br><br>
+    <label id="text4">
+      GeoPollster can be used anywhere in the world where Foursquare is used.
+    </label>
+    
+    <br><br><br>
+    <strong><label id="text3">What is location-based polling?</label></strong>
+    <br><br>
+    <label id="text4">
+      When a user signs up for GeoPollster, they select which political party they currently support. Then each time they check-in 
+      to a Foursquare venue, GeoPollster counts their check-in as a "vote" for that party. Votes are tallied to determine 
+      polling data for the venue, venue category, city, state, and country.
+    </label>
+
+    <br><br><br>
+    <strong><label id="text3">Why should I use location-based polling?</label></strong>
+    <br><br>
+    <label id="text4">
+      Traditional polling organizations conduct polls by calling people who have landline telephones.  
+      This means that existing polling data is gathered from people who own landlines and are too 
+      polite to hang up on cold callers.
+      GeoPollster changes this by conducting polls through the
+      location-based service <a href="http://foursquare.com/" target="_blank" style="font-weight: normal;">Foursquare</a>.  GeoPollster users can change their party affiliation 
+      at any time, allowing GeoPollster to keep track of real-time voter sentiment.
+    </label>
+    
+    <br><br><br>
+    <strong><label id="text3">Do others know what party I'm voting for?</label></strong>
+    <br><br>
+    <label id="text4">
+        No.  That information is private.  All of our polling data is used anonymously.
+    </label>
+    
+    <br><br><br>
+    <strong><label id="text3">Where can I use location-based polling?</label></strong>
+    <br><br>
+    <label id="text4">
+        GeoPollster's location-based polling can be used in all 50 states and the District of Columbia.
+    </label>
+    
+    <br><br><br>
+    <strong><label id="text3">How do I delete my account?</label></strong>
+    <br><br>
+    <label id="text4">
+        Login and go to Settings.  On the top right section of the page click Delete Account and follow the instructions.
+    </label>
+    
+  </div>
+  
+  <div>
+
+  </div>
+  
+</div>

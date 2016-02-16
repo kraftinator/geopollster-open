@@ -1,0 +1,68 @@
+demAmount = Array.new
+repAmount = Array.new
+demAmount = @friend_dem
+repAmount = @friend_rep
+page << "
+	var total_length = 0;
+	var dem_count = #{demAmount.length};
+	var rep_count = #{repAmount.length};
+	if (dem_count > rep_count) {
+		total_length = dem_count;
+	} else {
+		total_length = rep_count;
+	}
+	var colors = returnDemRepColorArray();
+	var colorArray = [];
+	var numberArray = [];
+	var legendArray = [];
+	var x = 0;
+	var y = 1;
+	var count = 0;
+	var demHold = [];
+	var repHold = [];
+"
+for d in @friend_dem
+	dem_amount_hold = d
+	page << "
+		demHold[count] = #{dem_amount_hold};
+		count = count + 1;
+	"
+end
+page << "count = 0;"
+for r in @friend_rep
+	rep_amount_hold = r
+	page << "
+		repHold[count] = #{rep_amount_hold};
+		count = count + 1;
+	"
+end
+page << "
+	count = 0;
+	for (; count < total_length; count++) {
+		numberArray = [];
+		legendArray = [];
+		colorArray = [];
+		if (repHold[count] > demHold[count]) {
+			x = 1;
+			y = 0;
+		} else {
+			x = 0;
+			y = 1;
+		}
+		if (demHold[count] > 0) {
+			numberArray[x] = demHold[count];
+			legendArray[x] = 'Democrats';
+			colorArray[x] = colors[1];
+		}
+		if (repHold[count] > 0) {
+			numberArray[y] = repHold[count];
+			legendArray[y] = 'Republicans';
+			colorArray[y] = colors[2];
+		}
+		if ((repHold[count] === 0) && (demHold[count] === 0)) {
+			colorArray = [];
+		}
+		var paper = Raphael('map_' + count, 250, 85, 0, 0);
+		drawPieChart(colorArray, numberArray, legendArray, 0, 'left', 0, .2);
+	}
+"

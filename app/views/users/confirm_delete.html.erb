@@ -1,0 +1,9 @@
+<div id="main">
+  <strong><label id="text2">Confirm Delete</label></strong>
+  <br><div class="separator"></div><br>
+  <label id="text35">Your GeoPollster data will be permanently destroyed. Are you sure?</label>
+  <br><br>
+  <label id="text4"><%= link_to 'Yes, please delete my account', { :controller => 'users', :action => 'delete' }, { :style => 'font-weight: normal;' } %></label>
+  <br><br>
+  <label id="text4"><%= link_to 'No, please take me back to Settings', { :controller => 'users', :action => 'settings' }, { :style => 'font-weight: normal;' } %></label>
+</div>

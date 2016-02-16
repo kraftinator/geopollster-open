@@ -1,0 +1,266 @@
+* {
+	margin:0;
+	padding:0;
+}
+body {
+	font-family:Calibri, Helvetica, Verdana, Arial, sans-serif;
+	font-family: Helvetica, Verdana, Arial, sans-serif;
+	font-size:.75em;
+	background-color:#e8e8df;
+	text-align:center;
+}
+h1,h2,h3,h4 {
+	font-weight:normal;
+	padding-bottom:1em;
+}
+h1 {
+	font-size:3.5em;
+	color: #0066cc;
+}
+h2 {
+	font-size:2.25em;
+	color:#555555;
+}
+h3 {
+	font-size:1.66em;
+	color:#0066cc;
+}
+h4 {
+	font-size:1.25em;
+	color:#555555;
+}
+
+#body {
+	text-align:left;
+	max-width:994px;
+	min-width:880px;
+	background-color:#ffffff;
+	margin-left:auto;
+	margin-right:auto;
+}
+.column_wrap {
+	max-width:994px;
+	min-width:880px;
+	margin-left:auto;
+	margin-right:auto;
+	background-color:#ffffff;
+}
+#main {
+	padding-top: 20px;
+	padding-left:70px;
+	padding-right:70px;
+}
+#toppane {
+  padding-top: 20px;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+a {
+	color: #0066cc;
+	text-decoration:none;
+	font-weight:bold;
+}
+a:hover {
+	text-decoration:underline;
+}
+img {
+  border-style: none;
+}
+#map {
+	height:500px;
+}
+.margin_left {
+	padding:20px 49px 0 49px;
+}
+.bottom_column {
+	float:left;
+	background-color:#ffffff;
+}
+.main_page_charts {
+	padding-top:50px;
+}
+div#leftpane {
+	width:67%;
+}
+div#rightpane{
+	width:33%;
+}
+div.leftpane {
+	width:50%;
+	float:left;
+}
+div.rightpane {
+	width:50%;
+	float:left;
+}
+#power_changes {
+	font-size:1.25em;
+	padding:50px 75px 0 75px;
+}
+#power_changes a {
+	color:#0066cc;
+}
+#power_changes img {
+	border:0;
+}
+#power_changes #pc_heading {
+	font-size:.9375em;
+	color:#5a5858;
+	font-weight:bold;
+}
+#power_changes #pc_item {
+	border-top:1px solid #dddddd;
+	padding:10px 0;
+	clear:both;
+}
+#pc_item #pc_party {
+	padding-right:10px;
+	float:left;
+}
+#pc_item #pc_text {
+	padding-top:10px;
+	float:left;
+	width:75%;
+}
+#category_image {
+	float:right;
+	padding-right:10px;
+}
+.float_left {
+	float:left;
+}
+.clear_floats {
+	clear:both;
+}
+.column_outter {
+	float:left;
+	width:33.3%;
+	min-height:200px;/**/
+	background-color:#ffffff;
+}
+.column_inner {
+	padding-left:1em;
+	padding-top:1em;
+	/* border-left:1px #555555 dashed; */
+	min-height:200px;/**/
+}
+.right_column_inner {
+  /*
+	border-right:1px #555555 dashed;
+	border-top:1px #555555 dashed;
+	border-bottom:1px #555555 dashed;
+	*/
+}
+ul {
+	font-size:1.2em;
+	padding-left:3em;
+	color:#555555;
+}
+#toppane p {
+	font-size:1.1em;
+	color:#555555;
+	padding:.5em 2em;
+}
+#hidden_parties {
+	padding:.5em 0 0 2em;
+	display:none;
+}
+#text1 {
+  font-size:3.5em;
+  color:#555555;
+}
+#text2 {
+  font-size:2.25em;
+  color:#555555;
+}
+#text3 {
+  font-size:1.66em;
+  color:#555555;
+}
+#text35 {
+  font-size:1.5em;
+  color:#555555;
+}
+#text4 {
+  font-size:1.25em;
+  color:#555555;
+}
+#text5 {
+  font-size:1.0em;
+  color:#555555;
+}
+.separator {
+  clear:both;
+  border-top:1px solid #dddddd;
+}
+#footer {
+  margin-left:70px;
+  margin-right:70px;
+  padding-top: 40px;
+  padding-bottom: 120px;
+  clear: both;
+  text-align: left;
+  color: #555555;
+}
+#header {
+  margin-left:70px;
+  margin-right:70px;
+  clear: both;
+  text-align: left;
+  color: #555555;
+}
+#update_party {
+  width: 400px;
+  border-style: solid solid solid solid;
+  border-color: #5a5858 #5a5858 #5a5858 #5a5858;
+  border-width: 1px 1px 1px 1px;
+  padding: 5px 5px 5px 5px;
+  background-color: #e8e8df;
+}
+#update_party #parties{
+  padding-left: 20px;
+}
+#spacer_3 {
+  padding-top: 3px;
+  clear: both;
+}
+#delete {
+  width: 400px;
+  border-style: solid solid solid solid;
+  border-color: #5a5858 #5a5858 #5a5858 #5a5858;
+  border-width: 1px 1px 1px 1px;
+  padding: 5px 5px 5px 5px;
+  background-color: #e8e8df;
+}
+#errors {
+    background-color: white;
+}
+#errors label {
+    font-size: 16px;
+    font-weight: bold;
+    color: red;
+    font-style: italic;
+    background-color: #FFE5E5;
+}
+
+a:focus { 
+    outline: none; 
+}
+ 
+.signupButton {
+   display: inline-block;
+   height: 40px;
+   width: 120px;
+   background: url('/images/signup_btn_sprite.png') no-repeat;
+   background-color: transparent;
+   background-position: 0 0; 
+   text-indent: -9999em;
+   }
+ 
+.signupButton:hover {
+   background-position:0 -40px;
+   }
+ 
+.signupButton:active {
+   background-position:0 -80px;
+   }

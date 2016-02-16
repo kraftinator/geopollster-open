@@ -1,0 +1,26 @@
+<div id="footer">
+  <p>   
+    <label id="text5">
+      <%= link_to 'About', :controller => 'welcome', :action => 'about' %>         
+      &nbsp;l&nbsp;
+      <%= link_to 'Contact', :controller => 'welcome', :action => 'contact' %>
+      &nbsp;l&nbsp;
+      <%= link_to 'FAQ', :controller => 'welcome', :action => 'faq' %>         
+      &nbsp;l&nbsp;
+      <%= link_to 'Privacy', :controller => 'welcome', :action => 'privacy' %>
+      &nbsp;l&nbsp;
+      <%= link_to 'Terms', :controller => 'welcome', :action => 'terms' %>
+      &nbsp;l&nbsp;
+      <%= link_to 'Press', :controller => 'welcome', :action => 'press' %>
+      &nbsp;l&nbsp;
+      <%= link_to 'Our Team', :controller => 'welcome', :action => 'team' %>
+    </label>
+    <br><br>
+		<a href="http://www.opensecrets.org" target="_blank">
+			<%= image_tag("/images/open_secrets2.gif", :title => 'Center for Responsive Politics', :class => 'float_left', :style => 'padding-left:2px;') %>
+		</a>
+		<a href="http://foursquare.com" target="_blank">
+			<%= image_tag("/images/powered_by_foursquare.png", :title => 'Powered By Foursquare', :width => "40%", :class => 'float_left', :style => 'padding-left:2px;') %>
+		</a>
+  </p>
+</div>

@@ -1,0 +1,19 @@
+<div id="main">
+  <label id="text2">Top Scores</label>
+  <br><div class="separator"></div><br>
+  <div style="padding-right:10px; float:left;">
+    <%= link_to image_tag( "/images/democratic.png", :size => "57x57", :title => 'Blue Points (Democrats)'), 
+        :controller => 'standings', :action => 'democrats' %>
+  </div>
+  <div style="line-height:57px;">
+    <label id="text3"><%= link_to 'Blue Points (Democrats)', { :controller => 'standings', :action => 'democrats' }, {:style=>'color:#555555; font-weight:bold;'} %></label>
+  </div>
+  <br>
+  <div style="padding-right:10px; float:left;">
+    <%= link_to image_tag( "/images/republican.png", :size => "57x57", :title => 'Red Points (Republicans)'), 
+        :controller => 'standings', :action => 'republicans' %>
+  </div>
+  <div style="line-height:57px;">
+    <label id="text3"><%= link_to 'Red Points (Republicans)', { :controller => 'standings', :action => 'republicans' }, {:style=>'color:#555555; font-weight:bold;'} %></label>
+  </div>
+</div>

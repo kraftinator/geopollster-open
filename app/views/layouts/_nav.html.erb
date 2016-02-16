@@ -1,0 +1,35 @@
+<div id="nav">
+	<div class="horizontal left_align active">
+		<ul class="menu">
+			<li><%= link_to 'Home', :controller => 'welcome' %></li>
+			<li><%= link_to 'Companies', :controller => 'companies' %></li>
+			<li><%= link_to 'Top Scores', :controller => 'standings' %>
+				<ul class="sub_menu left">
+					<li><%= link_to 'Blue Points', :controller => 'standings', :action => 'democrats' %></li>
+					<li><%= link_to 'Red Points', :controller => 'standings', :action => 'republicans' %></li>
+				</ul>
+			</li>
+			<li><%= link_to 'Polling', :controller => 'polling', :action => 'show' %>
+				<ul class="sub_menu left">
+					<li><%= link_to 'Parties', :controller => 'parties' %></li>
+					<li><%= link_to 'Categories', :controller => 'categories' %></li>
+					<li><%= link_to 'Mobile Devices', :controller => 'mobile_devices' %></li>
+					<li><%= link_to 'States', :controller => 'states' %></li>
+				</ul>
+			</li>
+      <li><%= link_to 'Features', :controller => 'standings', :action => 'football' %></li>
+			<% if current_user %>
+				<li class="right_align"><%= link_to 'My GeoPollster', :controller => 'users', :action => 'home' %>
+					<ul class="sub_menu right">
+							<li><%= link_to "Friends' Check-Ins", :controller => 'users', :action => 'friends_checkins' %></li>
+							<li><%= link_to 'Friends', :controller => 'users', :action => 'friends' %></li>
+							<li><%= link_to 'Settings', :controller => 'users', :action => 'settings' %></li>
+							<li><%= link_to 'Logout', :controller => 'users', :action => 'logout' %></li>
+					</ul>
+				</li>
+			<% else %>
+				<li class="right_align"><%= link_to 'Login', :controller => 'oauth', :action => 'start' %></li>
+			<% end %>
+		</ul>
+	</div>
+</div>

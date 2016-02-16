@@ -1,0 +1,35 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'us_states' %>
+	<%= javascript_include_tag 'raphael-pp' %>
+	<%= javascript_include_tag 'graphael' %>
+	<%= javascript_include_tag 'gpie' %>
+<% end %>
+<div id="main">
+  <div style="float: left;"><label id="text2"><strong>Location-Based Polling</strong></label></div>
+	<div style="float: right;"><%= render :partial => 'layouts/share_buttons' %></div>
+	<br><div class="separator"></div><br>
+  <div>
+    <div style="width: 450px; float: left; padding-right: 40px;">
+      <label style="font-size:1.45em; color:#555555;">
+        Cast your vote when you check-in on Foursquare. It's easy! When you sign up, choose which party you want to vote for. Each time you check-in, GeoPollster will anonymously tally your vote.
+      </label>
+    </div>
+    <div style="float: left;">
+      <% @parties.each do |party| %>
+        <%= link_to image_tag( party.icon_url, :size => "57x57", :title => party.official_name, :alt => party.official_name ), 
+            :controller => 'parties', :action => 'show', :url_slug => party.url_slug %>
+      <% end %>
+    </div>
+  </div>
+  <div class="clear_floats"></div>
+  <br><br>
+</div>
+<div id="map"></div>
+<div class="column_wrap">
+	<div id="leftpane" class="bottom_column"> 
+		<%= render :partial => 'polling/power_changes', :locals => { :power_changes => @power_changes } %>
+	</div>
+</div>
+<div id="rightpane" class="bottom_column main_page_charts" style="height:1251px"></div>
+<%= javascript_tag render( :partial => 'map_click.rjs') %>
+<% controller.response.content_type = Mime::HTML %>

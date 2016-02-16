@@ -1,0 +1,19 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'raphael-pp' %>
+	<%= javascript_include_tag 'graphael' %>
+	<%= javascript_include_tag 'gpie' %>
+<% end %>
+<div id="main">
+	<div style="float: left;"><label id="text2"><strong>Mobile Devices</strong></label></div>
+	<div style="float: right;"><%= render :partial => 'layouts/share_buttons' %></div>
+	<br><div class="separator"></div><br>
+	<div style="width:880px;">
+		<!--<div style="width:770px;margin:auto;">-->
+		<div id="android_chart" style="float:left;width:250px;height:350px;"></div>
+		<div id="blackberry_chart" style="float:left;width:250px;height:350px;"></div>
+		<div id="iphone_chart" style="float:left;width:250px;height:350px"></div>
+		<!--</div>-->
+	</div>
+</div>
+<%= javascript_tag render( :partial => 'mobile_devices_draw.rjs') %>
+<% controller.response.content_type = Mime::HTML %>

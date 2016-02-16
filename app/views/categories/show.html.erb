@@ -1,0 +1,29 @@
+ <% content_for :head do %>
+	<%= javascript_include_tag 'raphael-pp' %>
+	<%= javascript_include_tag 'graphael' %>
+	<%= javascript_include_tag 'gpie' %>
+<% end %>
+<div id="main">
+  <div style="padding-right:10px; padding-top:3px; float:left;">
+    <%= image_tag(@category.icon_url, :title => @category.display_name, :class => 'float_left') %>
+  </div>
+  <div style="line-height:47px; padding-right:10px; float:left;">
+    <strong><label id="text2"><%= @category.display_name %></label></strong>
+  </div>
+  <div style="float: right;"><%= render :partial => 'layouts/share_buttons' %></div>
+  <br><div class="separator"></div><br>
+  <div id="map" style="height:300px"></div>
+</div>
+<div class="column_wrap">
+  <% if @power_changes.any? %>  
+    <div id="leftpane" class="bottom_column"> 
+      <%= render :partial => 'polling/power_changes', :locals => { :power_changes => @power_changes } %>
+    </div>
+  <% end %>
+</div>
+<%= javascript_tag render(:partial => 'category_draw.rjs') %>
+<% controller.response.content_type = Mime::HTML %>
+
+
+
+

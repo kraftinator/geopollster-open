@@ -1,0 +1,16 @@
+<div id="main">
+  <div style="padding-right:10px; float:left;">
+    <%= image_tag( "/images/republican.png", :size => "57x57", :title => 'Republicans') %>
+  </div>
+  <div style="line-height:57px; float:left;">
+    <strong><label id="text2">Red Points (Republicans)</label></strong>
+  </div>
+  <div style="float: right;"><%= render :partial => 'layouts/share_buttons' %></div>
+  <br><div class="separator"></div><br>
+  <label id="text35">
+    RULES: Check-in to a venue and earn 1 Red Point if most of the venue's campaign contributions go to Republicans.
+    Earn 2 Red Points if more than two-thirds go to Republicans.
+  </label>
+  <br><br><br>
+  <%= render :partial => 'standings/rankings', :locals => { :points => @points, :is_democratic => false } %>  
+</div>

@@ -1,0 +1,95 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'raphael-pp' %>
+	<%= javascript_include_tag 'graphael' %>
+	<%= javascript_include_tag 'gpie' %>
+<% end %>
+<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0];if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src="//platform.twitter.com/widgets.js";fjs.parentNode.insertBefore(js,fjs);}}(document,"script","twitter-wjs");</script>
+<div id="main">
+  <strong><label id="text2">Friends</label></strong>
+  <br><div class="separator"></div><br>
+  <% if @friends.any? %>
+  <% @friend_dem = Array.new %>
+		<% @friend_rep = Array.new %>
+  <% is_first = true %>
+  <% friend_count = -1 %>
+	<% @friends.each do |friend| %>
+	  <div style="<% if !is_first %>border-top:1px solid #dddddd;<% end %> padding-top: 10px; padding-left: 20px; clear:both;">
+	    <div style="padding-right:20px; float:left;">
+	      <%= link_to image_tag( "#{ friend[:photo_url] }", :size => "60x60"), { :controller => 'users', :action => 'friend', :foursquare_id => friend[:foursquare_guid] }  %>
+	    </div>
+	    <div style="padding-right:20px; float:left; width:25%;">
+        <label id="text3"><%= link_to "#{ friend[:first_name] } #{ friend[:last_name] }", :controller => 'users', :action => 'friend', :foursquare_id => friend[:foursquare_guid] %></label>
+        <br>
+        <% if friend.instance_of? User %>
+	<% friend_count = friend_count + 1 %>
+          <label id="text4"><%= friend.location %></label>
+        <% else %>
+          <label id="text4"><%= friend[:home_city] %></label>
+        <% end %>
+      </div>
+      <% if friend.instance_of? User %>
+        <div style="float:left;">
+          <% if friend.point.has_points? %>
+	  	<% @friend_dem[friend_count] = friend.point.dem_total %>
+							<% @friend_rep[friend_count] = friend.point.rep_total %>
+            <% if friend.point.is_democratic? or friend.point.is_tied? %>
+	    <div style="float:left;width:270px;">
+              <label id="text3">Democrats: <%= display_score( friend.point.dem_total ) %></label>
+              &nbsp;&nbsp;<label id="text3" style='color:#337099; font-weight:bold;'><%= "(#{ sprintf( "%.0f", friend.point.dem_percent * 100 ) }%)" %></label>
+              <br>
+              <label id="text3">Republicans: <%= display_score( friend.point.rep_total ) %></label>
+              &nbsp;&nbsp;<label id="text3" style='color:#DF2020; font-weight:bold;'><%= "(#{ sprintf( "%.0f", friend.point.rep_percent * 100 ) }%)" %></label>
+	      </div>
+	      <div id="map_<%= friend_count %>" style="float:left;margin-top:-10px;"></div>
+            <% else %>
+	    <div style="float:left;width:270px;">
+              <label id="text3">Republicans: <%= display_score( friend.point.rep_total ) %></label>
+              &nbsp;&nbsp;<label id="text3" style='color:#DF2020; font-weight:bold;'><%= "(#{ sprintf( "%.0f", friend.point.rep_percent * 100 ) }%)" %></label>
+              <br>
+              <label id="text3">Democrats: <%= display_score( friend.point.dem_total ) %></label>
+              &nbsp;&nbsp;<label id="text3" style='color:#337099; font-weight:bold;'><%= "(#{ sprintf( "%.0f", friend.point.dem_percent * 100 ) }%)" %></label>
+	      </div>
+	      <div id="map_<%= friend_count %>" style="float:left;margin-top:-10px;"></div>
+            <% end %>
+          <% else %>
+	  <% @friend_dem[friend_count] = 0 %>
+						<% @friend_rep[friend_count] = 0 %>
+						<div style="float:left;width:270px;">
+            <label id="text3">Democrats: 0 points</label>
+            <br>
+            <label id="text3">Republicans: 0 points</label>
+	    </div>
+	    <div id="map_<%= friend_count %>" style="float:left;margin-top:-10px;"></div>
+          <% end %>
+        </div>
+      <% else %>
+        <div style="float: left;">
+          <% if friend[:twitter_handle] %>
+            <label id="text4">
+    		      <a href="https://twitter.com/intent/tweet?screen_name=<%= friend[:twitter_handle] %>&text=<%= twitter_invite %>">
+    		        <div style="padding-top: 0px;">
+    		          <table style="padding-right: 15px;">
+    		            <tr>
+    		              <td>
+  	  		              <%= image_tag("/images/twitter2.png", :title => "Invite #{ friend[:first_name] } to GeoPollster", :size => "36x36", :class => 'float_left', :style => 'padding-left:0px;') %>
+  	  		            </td>
+  	  		            <td>
+  		  	              Invite via Twitter
+  		  	            </td>
+  		  	          </tr>
+  		  	        </table>
+  		  	      </div>
+  		        </a>
+  		      </label>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+    <div class="clear_floats"></div>
+    <% is_first = false %>
+	<% end %>
+  <% else %>
+    <label style="font-size:1.1em; color:#555555;">Oh dear. It looks like you don't have any friends yet.</label>
+  <% end %>
+<%= javascript_tag render(:partial => 'friends_draw.rjs') %>
+<% controller.response.content_type = Mime::HTML %>

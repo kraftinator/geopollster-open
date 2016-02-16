@@ -1,0 +1,21 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'raphael-pp' %>
+	<%= javascript_include_tag 'graphael' %>
+	<%= javascript_include_tag 'gpie' %>
+<% end %>
+<div id="main">
+  <label id="text1"><%= @zip_code.name %></label>
+  <label id="text1">&nbsp;-&nbsp;<%= link_to @zip_code.city.full_name, { :controller => 'cities', :action => 'show', :id => @zip_code.city }, {:style=>'color:#555555; font-weight:normal;'} %></label>
+  <div style="float: right;"><%= render :partial => 'layouts/share_buttons' %></div>
+  <br><div class="separator"></div><br>
+  <div id="map" style="height:300px"></div>
+</div>
+<div class="column_wrap">
+  <% if @power_changes.any? %>
+    <div id="leftpane" class="bottom_column"> 
+      <%= render :partial => 'polling/power_changes', :locals => { :power_changes => @power_changes } %>
+    </div>
+  <% end %>
+</div>
+<%= javascript_tag render(:partial => 'zip_code_draw.rjs') %>
+<% controller.response.content_type = Mime::HTML %>

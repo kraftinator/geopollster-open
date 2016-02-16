@@ -1,0 +1,30 @@
+<% content_for :head do %>
+	<%= javascript_include_tag 'raphael-pp' %>
+	<%= javascript_include_tag 'graphael' %>
+	<%= javascript_include_tag 'gpie' %>
+<% end %>
+<div id="main">
+  <div style="float: left;"><label id="text1"><%= @city.full_name %></label></div>
+  <div style="float: right;"><%= render :partial => 'layouts/share_buttons' %></div>
+  <br><div class="separator"></div><br>
+  <div id="map" style="height:300px"></div>
+</div>
+<div class="column_wrap">
+  <% if @power_changes.any? %>
+    <div id="leftpane" class="bottom_column"> 
+      <%= render :partial => 'polling/power_changes', :locals => { :power_changes => @power_changes } %>
+    </div>
+    <div id="rightpane" class="bottom_column">
+      <div style="font-size:1.25em; padding:50px 50px 0px 0px;">
+        <label style="font-size:.9375em; color:#5a5858; font-weight:bold;"><%= @city.name.upcase %> ZIP CODES:</label>
+        <br><div class="separator"></div><br>
+          <% @city.zip_codes.each do |zip_code| %>
+            <label id="text4"><%= link_to zip_code.name, { :controller => 'zip_codes', :action => 'show', :name => zip_code.name }, {:style=>'color:#555555; font-weight:bold;'} %></label>
+            <br>
+          <% end %>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= javascript_tag render(:partial => 'city_draw.rjs') %>
+<% controller.response.content_type = Mime::HTML %>

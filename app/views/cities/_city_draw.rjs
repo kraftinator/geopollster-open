@@ -1,0 +1,33 @@
+page << "
+	var paper = Raphael('map', 900, 300, 0, 0);
+	var colors = returnColorArray();
+	var parties = [];
+	var slugs = [];
+	var colorArray = [];
+	var numberArray = [];
+	var legendArray = [];
+	var partySlugArray = [];
+	var count = 1;
+"
+for p in @parties
+	partyName = p.member_name_plural
+	partySlug = p.url_slug
+	page << "
+		parties[count] = '#{partyName}';
+		slugs[count] = '#{partySlug}';
+		count += 1;
+	"
+end
+page << "count = 0;"
+for c in @city_results
+	total = c.total
+	partyId = c.party_id
+	page << "
+		colorArray[count] = colors[#{partyId}];
+		numberArray[count] = #{total};
+		legendArray[count] = parties[#{partyId}] + ' - %%.%%';
+		partySlugArray[count] = slugs[#{partyId}];
+		count = count + 1;
+	"
+end
+page << "drawPieChart(colorArray, numberArray, legendArray, partySlugArray, 'left');"
