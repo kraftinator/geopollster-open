@@ -1,19 +1,13 @@
-# About GeoPollster
+## About GeoPollster
 
 GeoPollster was an app that used location-based service Foursquare to conduct real-time, location-based political polling. According to Business Insider, GeoPollster was “the most amusing app built on top of Foursquare we've seen yet." 
 
-# GeoPollster Canada
+## GeoPollster Canada
 
 Partnered with Canada's National Post newspaper during the 2011 Canadian federal election to create the election game/mobile polling experiment, GeoPollster Canada. Participants could affiliate their Foursquare checkins with a Canadian political party and help them "seize control" of venues, cities and provinces. This data set was updated in realtime to show an evolving sentiment map of party support across Canada as the election progressed. The Post won gold at the Canadian Online Publishing Award for our use of social media in this project. More info: http://news.nationalpost.com/2011/04/05/election-2011-help-your-favourite-party-seize-control-with-geopollster-and-the-national-post/
 
-# Press
+## Press
 
-[Check In on Foursquare to See a Company's Political Donations](http://mashable.com/2012/09/27/foursquare-politics-geopollster/) - *Mashable, September 27, 2012*
-
-[Find out which political party your favorite places are supporting with your money](http://aboutfoursquare.com/find-out-which-political-party-your-favorite-places-are-supporting-with-your-money/) - *About Foursquare, September 24, 2012*
-
-
-[National Post's website wins two golds and a silver at awards ceremony](http://news.nationalpost.com/2011/10/24/national-posts-website-wins-two-golds-and-a-silver-at-awards-ceremony/)
  - Articles
 
     <a href="http://mashable.com/2012/09/27/foursquare-politics-geopollster/" target="_blank" style="color:#555555; font-weight:bold;">Check In on Foursquare to See a Company's Political Donations</a>
