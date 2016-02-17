@@ -8,11 +8,9 @@ Partnered with Canada's National Post newspaper during the 2011 Canadian federal
 
 # Press
 
-[Check In on Foursquare to See a Company's Political Donations](http://mashable.com/2012/09/27/foursquare-politics-geopollster/)
-####*Mashable, September 27, 2012*
+[Check In on Foursquare to See a Company's Political Donations](http://mashable.com/2012/09/27/foursquare-politics-geopollster/) - *Mashable, September 27, 2012*
 
-[Find out which political party your favorite places are supporting with your money](http://aboutfoursquare.com/find-out-which-political-party-your-favorite-places-are-supporting-with-your-money/)
-####*About Foursquare, September 24, 2012*
+[Find out which political party your favorite places are supporting with your money](http://aboutfoursquare.com/find-out-which-political-party-your-favorite-places-are-supporting-with-your-money/) - *About Foursquare, September 24, 2012*
 
     <div id="spacer_3"></div>
     <a href="http://news.nationalpost.com/2011/10/24/national-posts-website-wins-two-golds-and-a-silver-at-awards-ceremony/" target="_blank" style="color:#555555; font-weight:bold;">National Post's website wins two golds and a silver at awards ceremony</a>
