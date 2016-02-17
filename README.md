@@ -12,9 +12,10 @@ Partnered with Canada's National Post newspaper during the 2011 Canadian federal
 
 [Find out which political party your favorite places are supporting with your money](http://aboutfoursquare.com/find-out-which-political-party-your-favorite-places-are-supporting-with-your-money/) - *About Foursquare, September 24, 2012*
 
-    <div id="spacer_3"></div>
-    <a href="http://news.nationalpost.com/2011/10/24/national-posts-website-wins-two-golds-and-a-silver-at-awards-ceremony/" target="_blank" style="color:#555555; font-weight:bold;">National Post's website wins two golds and a silver at awards ceremony</a>
-    <br>National Post, October 24, 2011
+
+[National Post's website wins two golds and a silver at awards ceremony](http://news.nationalpost.com/2011/10/24/national-posts-website-wins-two-golds-and-a-silver-at-awards-ceremony/)
+ - *National Post, October 24, 2011*
+
     <div id="spacer_3"></div>
     <a href="http://j-source.ca/article/social-media-and-election-round-part-ii" target="_blank" style="color:#555555; font-weight:bold;">Social media and the election: Round-up Part II</a>
     <br>The Canadian Journalism Project, May 3, 2011
