@@ -8,6 +8,9 @@ Partnered with Canada's National Post newspaper during the 2011 Canadian federal
 
 == Press
 
+
+This site was built using [GitHub Pages](https://pages.github.com/).
+
 Check In on Foursquare to See a Company's Political Donations
 Mashable, September 27, 2012
 http://mashable.com/2012/09/27/foursquare-politics-geopollster/
