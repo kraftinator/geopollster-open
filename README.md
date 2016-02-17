@@ -17,7 +17,6 @@ Partnered with Canada's National Post newspaper during the 2011 Canadian federal
     <a href="http://aboutfoursquare.com/find-out-which-political-party-your-favorite-places-are-supporting-with-your-money/" target="_blank" style="color:#555555; font-weight:bold;">Find out which political party your favorite places are supporting with your money</a>
     <br>About Foursquare, September 24, 2012
  - 
-    
     <a href="http://news.nationalpost.com/2011/10/24/national-posts-website-wins-two-golds-and-a-silver-at-awards-ceremony/" target="_blank" style="color:#555555; font-weight:bold;">National Post's website wins two golds and a silver at awards ceremony</a>
     <br>National Post, October 24, 2011
 
