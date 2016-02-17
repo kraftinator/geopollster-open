@@ -4,7 +4,7 @@ GeoPollster was an app that used location-based service Foursquare to conduct re
 
 ## GeoPollster Canada
 
-Partnered with Canada's National Post newspaper during the 2011 Canadian federal election to create the election game/mobile polling experiment, GeoPollster Canada. Participants could affiliate their Foursquare checkins with a Canadian political party and help them "seize control" of venues, cities and provinces. This data set was updated in realtime to show an evolving sentiment map of party support across Canada as the election progressed. The Post won gold at the Canadian Online Publishing Award for our use of social media in this project. More info: http://news.nationalpost.com/2011/04/05/election-2011-help-your-favourite-party-seize-control-with-geopollster-and-the-national-post/
+Partnered with Canada's National Post newspaper during the 2011 Canadian federal election to create the election game/mobile polling experiment, GeoPollster Canada. Participants could affiliate their Foursquare checkins with a Canadian political party and help them "seize control" of venues, cities and provinces. This data set was updated in realtime to show an evolving sentiment map of party support across Canada as the election progressed. The Post won gold at the Canadian Online Publishing Award for our use of social media in this project. More info: [Election 2011: Help your favourite party seize control with GeoPollster and Foursquare](http://news.nationalpost.com/2011/04/05/election-2011-help-your-favourite-party-seize-control-with-geopollster-and-the-national-post/)
 
 ## Press
 
@@ -74,4 +74,3 @@ Partnered with Canada's National Post newspaper during the 2011 Canadian federal
 
     <a href="http://www.businessinsider.com/heres-what-foursquare-mayor-battles-have-been-missing-party-politics-2010-10" target="_blank" style="color:#555555; font-weight:bold;">Here's What Foursquare Mayor Battles Have Been Missing: Party Politics!</a>
     <br>Business Insider, October 11, 2010
-  </label>
