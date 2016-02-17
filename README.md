@@ -19,19 +19,27 @@ Partnered with Canada's National Post newspaper during the 2011 Canadian federal
  - 
     <a href="http://news.nationalpost.com/2011/10/24/national-posts-website-wins-two-golds-and-a-silver-at-awards-ceremony/" target="_blank" style="color:#555555; font-weight:bold;">National Post's website wins two golds and a silver at awards ceremony</a>
     <br>National Post, October 24, 2011
+    
+ - 
 
     <a href="http://j-source.ca/article/social-media-and-election-round-part-ii" target="_blank" style="color:#555555; font-weight:bold;">Social media and the election: Round-up Part II</a>
     <br>The Canadian Journalism Project, May 3, 2011
-    <div id="spacer_3"></div>
+    
+ - 
+    
     <a href="http://thenextweb.com/ca/2011/04/29/geopollster-canada-brings-mobile-polling-to-canadas-election-campaign/" target="_blank" style="color:#555555; font-weight:bold;">GeoPollster Canada brings mobile polling to Canada's election campaign</a>
     <br>The Next Web, April 29, 2011
-    <div id="spacer_3"></div>
+    
+ - 
+    
     <a href="http://news.nationalpost.com/2011/04/19/campaign-fatigue-meets-fun-frivolity-with-online-election-games/" target="_blank" style="color:#555555; font-weight:bold;">Campaign fatigue meets fun, frivolity with online election games</a>
     <br>National Post, April 19, 2011
-    <div id="spacer_3"></div>
+    
+ - 
+    
     <a href="http://www.postmedia.com/2011/04/18/postmedia-network-teams-up-with-geopollster/" target="_blank" style="color:#555555; font-weight:bold;">Postmedia Network teams up with GeoPollster</a>
     <br>Postmedia, April 18, 2011
-    <div id="spacer_3"></div>
+    
     <a href="http://www.gisuser.com/content/view/23238/28/" target="_blank" style="color:#555555; font-weight:bold;">More Than A Check In - Geopollster, Cast Your Vote When you Check in via foursquare</a>
     <br>GISuser, April 14, 2011
     <div id="spacer_3"></div>
