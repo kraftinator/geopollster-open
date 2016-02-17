@@ -18,9 +18,6 @@ Partnered with Canada's National Post newspaper during the 2011 Canadian federal
 
     <a href="http://mashable.com/2012/09/27/foursquare-politics-geopollster/" target="_blank" style="color:#555555; font-weight:bold;">Check In on Foursquare to See a Company's Political Donations</a>
     <br>Mashable, September 27, 2012
-    <div id="spacer_3"></div>    
-    <%= link_to 'GeoPollster Launches Location-Based Tool Empowering Users to Support Companies Reflecting Their Political Beliefs', { :controller => 'welcome', :action => 'press_release' }, { :style => 'color:#555555; font-weight:bold;' } %>
-    <br>GeoPollster Press Release, September 25, 2012
     <div id="spacer_3"></div>
     <a href="http://aboutfoursquare.com/find-out-which-political-party-your-favorite-places-are-supporting-with-your-money/" target="_blank" style="color:#555555; font-weight:bold;">Find out which political party your favorite places are supporting with your money</a>
     <br>About Foursquare, September 24, 2012
