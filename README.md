@@ -21,7 +21,6 @@ Partnered with Canada's National Post newspaper during the 2011 Canadian federal
     <br>National Post, October 24, 2011
     
  - 
-
     <a href="http://j-source.ca/article/social-media-and-election-round-part-ii" target="_blank" style="color:#555555; font-weight:bold;">Social media and the election: Round-up Part II</a>
     <br>The Canadian Journalism Project, May 3, 2011
     
