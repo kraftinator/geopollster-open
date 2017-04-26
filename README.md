@@ -56,9 +56,8 @@ Partnered with Canada's National Post newspaper during the 2011 Canadian federal
  - 
     <a href="http://gigaom.com/2010/11/01/election-badges-vote-by-check-in-and-twitter-bubbles/" target="_blank" style="color:#555555; font-weight:bold;">Election Badges, Vote by Check-In and Twitter Bubbles</a>
     <br>GigaOM, November 1, 2010
+    
  - 
-
-
     <a href="http://bostinnovation.com/2010/10/29/rock-the-vote-with-geopollster-real-time-location-based-political-polling/" target="_blank" style="color:#555555; font-weight:bold;">Rock the Vote with GeoPollster: Real-time Location Based Political Polling</a>
     <br>BostInno, October 29, 2010
     
